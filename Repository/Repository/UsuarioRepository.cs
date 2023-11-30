@@ -19,9 +19,9 @@ namespace Repository.Repository
             _connectionString = connectionString;
         }
 
-        public Usuario Get(Usuario usuario ,string username, string password)
+        public static Usuario Get(Usuario usuario ,string username, string password)
         {
-            using (IDbConnection dbConnection = new SqlConnection(_connectionString))
+            using (IDbConnection dbConnection = new SqlConnection())
             {
                 dbConnection.Open();
 

@@ -21,6 +21,5 @@ namespace Domain
 
         public List<Curso> Curso { get; set; }
 
-
     }
 }

@@ -1,0 +1,17 @@
+C:\Users\nerif\source\repos\ProjectUniversity\Service\bin\Debug\net5.0\Service.deps.json
+C:\Users\nerif\source\repos\ProjectUniversity\Service\bin\Debug\net5.0\Service.dll
+C:\Users\nerif\source\repos\ProjectUniversity\Service\bin\Debug\net5.0\ref\Service.dll
+C:\Users\nerif\source\repos\ProjectUniversity\Service\bin\Debug\net5.0\Service.pdb
+C:\Users\nerif\source\repos\ProjectUniversity\Service\bin\Debug\net5.0\Domain.dll
+C:\Users\nerif\source\repos\ProjectUniversity\Service\bin\Debug\net5.0\Repository.dll
+C:\Users\nerif\source\repos\ProjectUniversity\Service\bin\Debug\net5.0\Domain.pdb
+C:\Users\nerif\source\repos\ProjectUniversity\Service\bin\Debug\net5.0\Repository.pdb
+C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.csproj.AssemblyReference.cache
+C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.AssemblyInfoInputs.cache
+C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.AssemblyInfo.cs
+C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.csproj.CoreCompileInputs.cache
+C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.csproj.CopyComplete
+C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.dll
+C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\ref\Service.dll
+C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.pdb

@@ -1,0 +1,7 @@
+C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\ProjectUniversity.csproj.AssemblyReference.cache
+C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\ProjectUniversity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\ProjectUniversity.AssemblyInfoInputs.cache
+C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\ProjectUniversity.AssemblyInfo.cs
+C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\ProjectUniversity.csproj.CoreCompileInputs.cache
+C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\ProjectUniversity.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\ProjectUniversity.MvcApplicationPartsAssemblyInfo.cache
