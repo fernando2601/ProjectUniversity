@@ -11,48 +11,43 @@ namespace Repository
 {
     public class DisciplinaRepository : IDisciplinaRepository
     {
-        private readonly string _connectionString;
+        private readonly IDbConnection _dbConnection;
 
-        public DisciplinaRepository(string connectionString)
+        public DisciplinaRepository(IDbConnection dbConnection)
         {
-            _connectionString = connectionString;
+            _dbConnection = dbConnection;
         }
 
         public async Task<int> AdicionarAsync(Disciplina disciplina)
         {
-            using IDbConnection dbConnection = new SqlConnection(_connectionString);
-            dbConnection.Open();
-            return await dbConnection.ExecuteAsync("INSERT INTO Curso (Nome, Alunos,Professores) VALUES (@Nome, @Alunos,@Professores); SELECT CAST(SCOPE_IDENTITY() as int)", disciplina);
+            _dbConnection.Open();
+            return await _dbConnection.ExecuteAsync("INSERT INTO Curso (Nome, Alunos,Professores) VALUES (@Nome, @Alunos,@Professores); SELECT CAST(SCOPE_IDENTITY() as int)", disciplina);
         }
 
         public async Task<bool> AtualizarDisciplinaAsync(Disciplina disciplina)
         {
-            using IDbConnection dbConnection = new SqlConnection(_connectionString);
-            dbConnection.Open();
-            var result = await dbConnection.ExecuteAsync("UPDATE Curso SET Nome = @Nome, Professores = @Professores , Alunos = @Alunos WHERE Id = @Id", disciplina);
+            _dbConnection.Open();
+            var result = await _dbConnection.ExecuteAsync("UPDATE Curso SET Nome = @Nome, Professores = @Professores , Alunos = @Alunos WHERE Id = @Id", disciplina);
             return result > 0;
         }
 
         public async Task<bool> DeletarDisciplinaAsync(Guid id)
         {
-            using IDbConnection dbConnection = new SqlConnection(_connectionString);
-            dbConnection.Open();
-            var result = await dbConnection.ExecuteAsync("DELETE FROM Disciplina WHERE Id = @Id", new { Id = id });
+            _dbConnection.Open();
+            var result = await _dbConnection.ExecuteAsync("DELETE FROM Disciplina WHERE Id = @Id", new { Id = id });
             return result > 0;
         }
 
         public async Task<Disciplina> ObterPorIdAsync(Guid id)
         {
-            using IDbConnection dbConnection = new SqlConnection(_connectionString);
-            dbConnection.Open();
-            return await dbConnection.QueryFirstOrDefaultAsync<Disciplina>("SELECT * FROM Disciplina WHERE Id = @Id", new { Id = id });
+            _dbConnection.Open();
+            return await _dbConnection.QueryFirstOrDefaultAsync<Disciplina>("SELECT * FROM Disciplina WHERE Id = @Id", new { Id = id });
         }
 
         public async Task<IEnumerable<Disciplina>> ObterTodosAsync()
         {
-            using IDbConnection dbConnection = new SqlConnection(_connectionString);
-            dbConnection.Open();
-            return await dbConnection.QueryAsync<Disciplina>("SELECT * FROM Disciplina");
+            _dbConnection.Open();
+            return await _dbConnection.QueryAsync<Disciplina>("SELECT * FROM Disciplina");
         }
     }
 

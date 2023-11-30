@@ -1,6 +1,0 @@
-C:\Users\nerif\source\repos\ProjectUniversity\Test\bin\Debug\net5.0\CoverletSourceRootsMapping
-C:\Users\nerif\source\repos\ProjectUniversity\Test\obj\Debug\net5.0\Test.csproj.AssemblyReference.cache
-C:\Users\nerif\source\repos\ProjectUniversity\Test\obj\Debug\net5.0\Test.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\nerif\source\repos\ProjectUniversity\Test\obj\Debug\net5.0\Test.AssemblyInfoInputs.cache
-C:\Users\nerif\source\repos\ProjectUniversity\Test\obj\Debug\net5.0\Test.AssemblyInfo.cs
-C:\Users\nerif\source\repos\ProjectUniversity\Test\obj\Debug\net5.0\Test.csproj.CoreCompileInputs.cache

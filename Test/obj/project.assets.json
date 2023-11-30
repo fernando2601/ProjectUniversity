@@ -2399,29 +2399,6 @@
           "bin/placeholder/Ioc.dll": {}
         }
       },
-      "ProjectUniversity/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Dapper": "2.1.21",
-          "Ioc": "1.0.0",
-          "Microsoft.AspNetCore.Authentication": "2.2.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.0",
-          "Microsoft.Extensions.DependencyInjection": "8.0.0",
-          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.11.1",
-          "Service": "1.0.0",
-          "Swashbuckle.AspNetCore": "5.6.3"
-        },
-        "compile": {
-          "bin/placeholder/ProjectUniversity.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ProjectUniversity.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
-      },
       "Repository/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -2457,6 +2434,29 @@
         "runtime": {
           "bin/placeholder/Service.dll": {}
         }
+      },
+      "Web/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Dapper": "2.1.21",
+          "Ioc": "1.0.0",
+          "Microsoft.AspNetCore.Authentication": "2.2.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.0",
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.11.1",
+          "Service": "1.0.0",
+          "Swashbuckle.AspNetCore": "5.6.3"
+        },
+        "compile": {
+          "bin/placeholder/Web.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Web.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -8072,11 +8072,6 @@
       "path": "../Ioc/Ioc.csproj",
       "msbuildProject": "../Ioc/Ioc.csproj"
     },
-    "ProjectUniversity/1.0.0": {
-      "type": "project",
-      "path": "../ProjectUniversity/ProjectUniversity.csproj",
-      "msbuildProject": "../ProjectUniversity/ProjectUniversity.csproj"
-    },
     "Repository/1.0.0": {
       "type": "project",
       "path": "../Repository/Repository.csproj",
@@ -8086,6 +8081,11 @@
       "type": "project",
       "path": "../Service/Service.csproj",
       "msbuildProject": "../Service/Service.csproj"
+    },
+    "Web/1.0.0": {
+      "type": "project",
+      "path": "../ProjectUniversity/Web.csproj",
+      "msbuildProject": "../ProjectUniversity/Web.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -8093,7 +8093,7 @@
       "Microsoft.Extensions.DependencyInjection >= 8.0.0",
       "Microsoft.NET.Test.Sdk >= 16.9.4",
       "Moq >= 4.20.70",
-      "ProjectUniversity >= 1.0.0",
+      "Web >= 1.0.0",
       "coverlet.collector >= 3.0.2",
       "xunit >= 2.6.2",
       "xunit.runner.visualstudio >= 2.4.3"
@@ -8126,8 +8126,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\ProjectUniversity\\ProjectUniversity.csproj": {
-              "projectPath": "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\ProjectUniversity\\ProjectUniversity.csproj"
+            "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\ProjectUniversity\\Web.csproj": {
+              "projectPath": "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\ProjectUniversity\\Web.csproj"
             }
           }
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "93G2ynZxF9w1SdAPgrQb66JkWFRHGrYWjeVpck5z+7+bCbc1BQaEpwFxWhfpKu83wl/vYm73qFKnxaiDqFvGZQ==",
+  "dgSpecHash": "hVpuRZpSNia6Pu6Uv92TE7rRZrS9vF4uQ4F8sTU3UAZjMTzLrr0i3RPLb7lt2NACyHgm1eTXl9bYRwU7gLERlw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\ProjectUniversity\\ProjectUniversity.csproj",
+  "projectFilePath": "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\ProjectUniversity\\Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nerif\\.nuget\\packages\\dapper\\2.1.21\\dapper.2.1.21.nupkg.sha512",
     "C:\\Users\\nerif\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

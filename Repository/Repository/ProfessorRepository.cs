@@ -11,48 +11,43 @@ namespace Repository
 {
     public class ProfessorRepository : IProfessorRepository
     {
-        private readonly string _connectionString;
+        private readonly IDbConnection _dbConnection;
 
-        public ProfessorRepository(string connectionString)
+        public ProfessorRepository(IDbConnection dbConnection)
         {
-            _connectionString = connectionString;
+            _dbConnection = dbConnection;
         }
 
         public async Task<int> AdicionarAsync(Professor professor)
         {
-            using IDbConnection dbConnection = new SqlConnection(_connectionString);
-            dbConnection.Open();
-            return await dbConnection.ExecuteAsync("INSERT INTO Professor (Nome,Endereço,Idade,Salário,ProfessorCoordenador) VALUES (@Nome,@Endereço, @Idade,@Salario,@ProfessorCoordenador); SELECT CAST(SCOPE_IDENTITY() as int)", professor);
+            _dbConnection.Open();
+            return await _dbConnection.ExecuteAsync("INSERT INTO Professor (Nome,Endereço,Idade,Salário,ProfessorCoordenador) VALUES (@Nome,@Endereço, @Idade,@Salario,@ProfessorCoordenador); SELECT CAST(SCOPE_IDENTITY() as int)", professor);
         }
 
         public async Task<bool> AtualizarProfessorAsync(Professor professor)
         {
-            using IDbConnection dbConnection = new SqlConnection(_connectionString);
-            dbConnection.Open();
-            var result = await dbConnection.ExecuteAsync("UPDATE Professor SET Nome = @Nome,Endereço = @Endereço,Idade = @Idade , Salário = @Salário ,ProfessorCoordenador = @ProfessorCoordenador WHERE IdProfessor = @IdProfessor", professor);
+            _dbConnection.Open();
+            var result = await _dbConnection.ExecuteAsync("UPDATE Professor SET Nome = @Nome,Endereço = @Endereço,Idade = @Idade , Salário = @Salário ,ProfessorCoordenador = @ProfessorCoordenador WHERE IdProfessor = @IdProfessor", professor);
             return result > 0;
         }
 
         public async Task<bool> DeletarProfessorAsync(Guid id)
         {
-            using IDbConnection dbConnection = new SqlConnection(_connectionString);
-            dbConnection.Open();
-            var result = await dbConnection.ExecuteAsync("DELETE FROM Professor WHERE IdProfessor = @IdProfessor", new { Id = id });
+            _dbConnection.Open();
+            var result = await _dbConnection.ExecuteAsync("DELETE FROM Professor WHERE IdProfessor = @IdProfessor", new { Id = id });
             return result > 0;
         }
 
         public async Task<Professor> ObterPorIdAsync(Guid id)
         {
-            using IDbConnection dbConnection = new SqlConnection(_connectionString);
-            dbConnection.Open();
-            return await dbConnection.QueryFirstOrDefaultAsync<Professor>("SELECT * FROM Professor WHERE IdProfessor = @IdProfessor", new { Id = id });
+            _dbConnection.Open();
+            return await _dbConnection.QueryFirstOrDefaultAsync<Professor>("SELECT * FROM Professor WHERE IdProfessor = @IdProfessor", new { Id = id });
         }
 
         public async Task<IEnumerable<Professor>> ObterTodosAsync()
         {
-            using IDbConnection dbConnection = new SqlConnection(_connectionString);
-            dbConnection.Open();
-            return await dbConnection.QueryAsync<Professor>("SELECT * FROM Professor");
+            _dbConnection.Open();
+            return await _dbConnection.QueryAsync<Professor>("SELECT * FROM Professor");
         }
     }
 }

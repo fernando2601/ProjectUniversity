@@ -1,25 +1,20 @@
 ﻿using Dapper;
 using Domain;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository.Repository
 {
-    public  class UsuarioRepository
+    public class UsuarioRepository
     {
-        private readonly string _connectionString;
+        private readonly IDbConnection _dbConnection;
 
-        public UsuarioRepository(string connectionString)
+        public UsuarioRepository(IDbConnection dbConnection)
         {
-            _connectionString = connectionString;
+            _dbConnection = dbConnection;
         }
 
-        public static Usuario Get(Usuario usuario ,string username, string password)
+        public static Usuario Get(Usuario usuario, string username, string password)
         {
             using (IDbConnection dbConnection = new SqlConnection())
             {
@@ -28,26 +23,18 @@ namespace Repository.Repository
                 return dbConnection.QueryFirstOrDefault<Usuario>("SELECT * FROM Usuarios WHERE Username = @Username AND Password = @Password", usuario);
             }
         }
-
-        public  void Insert(Usuario usuario)
+        public void Insert(Usuario usuario)
         {
-            using (IDbConnection dbConnection = new SqlConnection(_connectionString))
-            {
-                dbConnection.Open();
+            _dbConnection.Open();
 
-                dbConnection.Execute("INSERT INTO Usuarios (Username, Password, Role) VALUES (@Username, @Password, @Role)", usuario);
-            }
+            _dbConnection.Execute("INSERT INTO Usuarios (Username, Password, Role) VALUES (@Username, @Password, @Role)", usuario);
         }
 
-        public  void Update(Usuario usuario)
+        public void Update(Usuario usuario)
         {
-            using (IDbConnection dbConnection = new SqlConnection(_connectionString))
-            {
-                dbConnection.Open();
+            _dbConnection.Open();
 
-                dbConnection.Execute("UPDATE Usuarios SET Username = @Username, Password = @Password, Role = @Role WHERE Id = @Id", usuario);
-            }
-
+            _dbConnection.Execute("UPDATE Usuarios SET Username = @Username, Password = @Password, Role = @Role WHERE Id = @Id", usuario);
         }
     }
 }

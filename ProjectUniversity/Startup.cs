@@ -28,7 +28,6 @@ namespace ProjectUniversity
             services.AdicionarSwagger();
             services.ConfigurarAutenticacaoJwt();
 
-
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",

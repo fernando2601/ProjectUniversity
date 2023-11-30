@@ -2246,9 +2246,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\ProjectUniversity\\ProjectUniversity.csproj",
-      "projectName": "ProjectUniversity",
-      "projectPath": "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\ProjectUniversity\\ProjectUniversity.csproj",
+      "projectUniqueName": "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\ProjectUniversity\\Web.csproj",
+      "projectName": "Web",
+      "projectPath": "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\ProjectUniversity\\Web.csproj",
       "packagesPath": "C:\\Users\\nerif\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\ProjectUniversity\\obj\\",
       "projectStyle": "PackageReference",
