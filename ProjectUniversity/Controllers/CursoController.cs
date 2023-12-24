@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -14,48 +15,124 @@ namespace ProjectUniversity.Controllers
     public class CursoController : ControllerBase
     {
         private readonly ICursoService _cursoService;
+        private readonly ILogger<CursoController> _logger;
 
-        public CursoController(ICursoService cursoService)
+
+        public CursoController(ICursoService cursoService, ILogger<CursoController> logger)
         {
             _cursoService = cursoService;
+            _logger = logger;
+
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Curso>>> Get()
+        public async Task<ActionResult<IEnumerable<Curso>>> ObterTodos()
         {
-            var livros = await _cursoService.ObterTodosCursosAsync();
-            return Ok(livros);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Curso>> Get(Guid id)
-        {
-            var curso = await _cursoService.ObterCursoPorIdAsync(id);
-            if (curso == null)
+            try
             {
-                return NotFound();
-            }
+                var cursos = await _cursoService.ObterTodosCursosAsync();
 
-            return Ok(curso);
+                _logger.LogInformation("Lista de alunos obtida com sucesso");
+
+                return Ok(cursos);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Erro ao obter a lista de alunos: {ex.Message}");
+                return StatusCode(500, "Ocorreu um erro ao obter a lista de alunos");
+            }
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Curso>> ObterCursoPorId(int idCurso)
+        {
+            try
+            {
+                var curso = await _cursoService.ObterCursoPorIdAsync(idCurso);
+
+                if (curso == null)
+                {
+                    _logger.LogWarning($"Aluno com ID {idCurso} não encontrado");
+                    return NotFound();
+                }
+
+                _logger.LogInformation($"Aluno com ID {idCurso} encontrado com sucesso");
+
+                return Ok(curso);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Erro ao obter o aluno com ID {idCurso}: {ex.Message}");
+                return StatusCode(500, "Ocorreu um erro ao obter o aluno por ID");
+            }
+                }
 
         [HttpPost]
         public async Task<ActionResult<int>> Post([FromBody] Curso curso)
         {
-            var cursoId = await _cursoService.AdicionarCursoAsync(curso);
-            return Ok(cursoId);
+            try
+            {
+                if (curso == null)
+                {
+                    _logger.LogError("Dados do curso são nulos");
+                    return BadRequest("Dados do curso são nulos");
+                }
+
+                _logger.LogInformation("Tentativa de adicionar um novo curso");
+
+                var cursoId = await _cursoService.AdicionarCursoAsync(curso);
+
+                _logger.LogInformation($"Novo curso adicionado com ID: {cursoId}");
+
+                return Ok(cursoId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Exceção ao tentar adicionar um novo curso: {ex.Message}");
+                return StatusCode(500, "Ocorreu um erro ao adicionar o novo curso");
+            }
         }
+
+
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<bool>> Put(Guid id, [FromBody] Curso curso)
+        public async Task<ActionResult<bool>> Put(int id, [FromBody] Curso curso)
         {
-            curso.IdCurso = id;
-            var resultado = await _cursoService.AtualizarCursoAsync(curso);
-            return Ok(resultado);
+            try
+            {
+                if (curso == null)
+                {
+                    _logger.LogError("Dados do curso são nulos");
+                    return BadRequest("Dados do curso são nulos");
+                }
+
+                _logger.LogInformation($"Tentativa de atualização do curso com ID {id}");
+
+                curso.IdCurso = id;
+
+                var resultado = await _cursoService.AtualizarCursoAsync(curso);
+
+                if (resultado)
+                {
+                    _logger.LogInformation($"Curso com ID {id} atualizado com sucesso");
+                    return Ok(true);
+                }
+                else
+                {
+                    _logger.LogError($"Falha ao atualizar o curso com ID {id}");
+                    return StatusCode(500, "Falha ao atualizar o curso");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Exceção durante a atualização do curso com ID {id}: {ex.Message}");
+                return StatusCode(500, "Ocorreu um erro durante a atualização do curso");
+            }
         }
 
+
+
         [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> Delete(Guid id)
+        public async Task<ActionResult<bool>> Delete(int id)
         {
             var resultado = await _cursoService.DeletarCursoAsync(id);
             return Ok(resultado);

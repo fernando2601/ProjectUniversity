@@ -8,13 +8,17 @@ namespace Domain
 {
     public class Disciplina
     {
-        public Guid Id { get; set; }
+        public int IdDisciplina { get; set; }
 
         public int Nota { get; set; }
 
-        public int Nome { get; set; }
+        public string Nome { get; set; }
 
-        public Professor Professores { get; set; }
+        public int IdCurso { get; set; }
+        public Curso Curso { get; set; }
+
+        public int IdProfessor { get; set; }
+        public Professor Professor { get; set; }
 
     }
 }

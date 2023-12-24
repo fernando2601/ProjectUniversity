@@ -8,9 +8,9 @@ namespace Service
     public interface IAlunoService
     {
         Task<IEnumerable<Aluno>> ObterTodosAlunosAsync();
-        Task<Aluno> ObterAlunoPorIdAsync(Guid id);
-        Task<int> AdicionarAlunoAsync(Aluno aluno);
-        Task<bool> AtualizarAlunoAsync(Aluno aluno);
-        Task<bool> DeletarAlunoAsync(Guid id);
+        Task<Aluno> ObterAlunoPorIdAsync(int id);
+        Task<int> AdicionarAlunoAsync(AlunoCursoDTO alunoCurso);
+        Task<bool> AtualizarAlunoAsync(Aluno aluno, List<int> cursosAdicionados);
+        Task<bool> DeletarAlunoAsync(int id);
     }
 }

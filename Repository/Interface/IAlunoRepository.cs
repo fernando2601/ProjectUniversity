@@ -10,9 +10,9 @@ namespace Repository.Interface
     public interface IAlunoRepository
     {
         Task<IEnumerable<Aluno>> ObterTodosAsync();
-        Task<Aluno> ObterPorIdAsync(Guid id);
-        Task<int> AdicionarAsync(Aluno aluno);
-        Task<bool> AtualizarAlunoAsync(Aluno aluno);
-        Task<bool> DeletarAlunoAsync(Guid id);
+        Task<Aluno> ObterPorIdAsync(int id);
+        Task<int> AdicionarAlunoAsync(AlunoCursoDTO alunoCurso);
+        Task<bool> AtualizarAlunoAsync(Aluno aluno, List<int> cursosAdicionados);
+        Task<bool> DeletarAlunoAsync(int id);
     }
 }

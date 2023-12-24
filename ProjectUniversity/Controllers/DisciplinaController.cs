@@ -28,7 +28,7 @@ namespace ProjectUniversity.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Disciplina>> Get(Guid id)
+        public async Task<ActionResult<Disciplina>> Get(int id)
         {
             var aluno = await _disciplinaService.ObterDisciplinaPorIdAsync(id);
             if (aluno == null)
@@ -47,15 +47,15 @@ namespace ProjectUniversity.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<bool>> Put(Guid id, [FromBody] Disciplina disciplina)
+        public async Task<ActionResult<bool>> Put(int id, [FromBody] Disciplina disciplina)
         {
-            disciplina.Id = id;
+            disciplina.IdDisciplina = id;
             var resultado = await _disciplinaService.AtualizarDisciplinaAsync(disciplina);
             return Ok(resultado);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> Delete(Guid id)
+        public async Task<ActionResult<bool>> Delete(int id)
         {
             var resultado = await _disciplinaService.DeletarDisciplinaAsync(id);
             return Ok(resultado);

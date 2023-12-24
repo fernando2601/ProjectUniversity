@@ -30,12 +30,12 @@ namespace Service.Service
             return _professorRepository.AtualizarProfessorAsync(professor);
         }
 
-        public Task<bool> DeletarProfessorAsync(Guid id)
+        public Task<bool> DeletarProfessorAsync(int id)
         {
             return _professorRepository.DeletarProfessorAsync(id);
         }
 
-        public Task<Professor> ObterProfessorPorIdAsync(Guid id)
+        public Task<Professor> ObterProfessorPorIdAsync(int id)
         {
             return _professorRepository.ObterPorIdAsync(id);
         }

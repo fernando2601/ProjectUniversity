@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
 using IOC;
 
@@ -13,16 +15,21 @@ namespace ProjectUniversity
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            services.AddLogging(builder =>
+            {
+                builder.AddConsole();
+            });
 
             services.AdicionarServicos(connectionString);
             services.AdicionarSwagger();
@@ -66,3 +73,4 @@ namespace ProjectUniversity
         }
     }
 }
+

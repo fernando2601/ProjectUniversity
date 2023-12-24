@@ -46,8 +46,8 @@ C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0
 C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\staticwebassets\Web.StaticWebAssets.xml
 C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\scopedcss\bundle\Web.styles.css
 C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\Web.RazorTargetAssemblyInfo.cache
-C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\Web.csproj.CopyComplete
 C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\Web.dll
 C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\ref\Web.dll
 C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\Web.pdb
 C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\Web.genruntimeconfig.cache
+C:\Users\nerif\source\repos\ProjectUniversity\ProjectUniversity\obj\Debug\net5.0\Web.csproj.CopyComplete

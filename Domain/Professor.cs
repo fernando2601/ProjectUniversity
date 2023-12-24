@@ -8,7 +8,7 @@ namespace Domain
 {
     public class Professor
     {
-        public Guid IdProfessor { get; set; }
+        public int IdProfessor { get; set; }
 
         public string Nome { get; set; }
 
@@ -20,7 +20,7 @@ namespace Domain
 
         public bool ProfessorCoordenador { get; set; }
 
-        public Disciplina Disciplina { get; set; }
+        public List<Disciplina> Disciplinas { get; set; }
 
     }
 }

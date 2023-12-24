@@ -10,9 +10,9 @@ namespace Service.Interface
     public interface IDisciplinaService
     {
         Task<IEnumerable<Disciplina>> ObterTodasDisciplinasAsync();
-        Task<Disciplina> ObterDisciplinaPorIdAsync(Guid id);
+        Task<Disciplina> ObterDisciplinaPorIdAsync(int id);
         Task<int> AdicionarDisciplinaoAsync(Disciplina disciplina);
         Task<bool> AtualizarDisciplinaAsync(Disciplina disciplina);
-        Task<bool> DeletarDisciplinaAsync(Guid id);
+        Task<bool> DeletarDisciplinaAsync(int id);
     }
 }

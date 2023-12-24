@@ -30,12 +30,12 @@ namespace Service.Service
             return _disciplinaRepository.AtualizarDisciplinaAsync(disciplina);
         }
 
-        public Task<bool> DeletarDisciplinaAsync(Guid id)
+        public Task<bool> DeletarDisciplinaAsync(int id)
         {
             return _disciplinaRepository.DeletarDisciplinaAsync(id);
         }
 
-        public Task<Disciplina> ObterDisciplinaPorIdAsync(Guid id)
+        public Task<Disciplina> ObterDisciplinaPorIdAsync(int id)
         {
             return _disciplinaRepository.ObterPorIdAsync(id);
         }

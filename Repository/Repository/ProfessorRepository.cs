@@ -31,14 +31,14 @@ namespace Repository
             return result > 0;
         }
 
-        public async Task<bool> DeletarProfessorAsync(Guid id)
+        public async Task<bool> DeletarProfessorAsync(int id)
         {
             _dbConnection.Open();
             var result = await _dbConnection.ExecuteAsync("DELETE FROM Professor WHERE IdProfessor = @IdProfessor", new { Id = id });
             return result > 0;
         }
 
-        public async Task<Professor> ObterPorIdAsync(Guid id)
+        public async Task<Professor> ObterPorIdAsync(int id)
         {
             _dbConnection.Open();
             return await _dbConnection.QueryFirstOrDefaultAsync<Professor>("SELECT * FROM Professor WHERE IdProfessor = @IdProfessor", new { Id = id });

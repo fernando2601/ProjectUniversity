@@ -31,14 +31,14 @@ namespace Repository
             return result > 0;
         }
 
-        public async Task<bool> DeletarDisciplinaAsync(Guid id)
+        public async Task<bool> DeletarDisciplinaAsync(int id)
         {
             _dbConnection.Open();
             var result = await _dbConnection.ExecuteAsync("DELETE FROM Disciplina WHERE Id = @Id", new { Id = id });
             return result > 0;
         }
 
-        public async Task<Disciplina> ObterPorIdAsync(Guid id)
+        public async Task<Disciplina> ObterPorIdAsync(int id)
         {
             _dbConnection.Open();
             return await _dbConnection.QueryFirstOrDefaultAsync<Disciplina>("SELECT * FROM Disciplina WHERE Id = @Id", new { Id = id });

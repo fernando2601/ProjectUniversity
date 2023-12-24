@@ -10,9 +10,9 @@ namespace Service.Interface
     public interface ICursoService
     {
         Task<IEnumerable<Curso>> ObterTodosCursosAsync();
-        Task<Curso> ObterCursoPorIdAsync(Guid id);
+        Task<Curso> ObterCursoPorIdAsync(int id);
         Task<int> AdicionarCursoAsync(Curso curso);
         Task<bool> AtualizarCursoAsync(Curso curso);
-        Task<bool> DeletarCursoAsync(Guid id);
+        Task<bool> DeletarCursoAsync(int id);
     }
 }

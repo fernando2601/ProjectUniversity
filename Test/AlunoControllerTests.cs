@@ -1,5 +1,6 @@
 using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
 using ProjectUniversity.Controllers;
 using Service;
@@ -15,10 +16,12 @@ public class AlunoControllerTests
     public async Task Get_ReturnsListOfAlunos()
     {
         var mockAlunoService = new Mock<IAlunoService>();
-        var expectedAlunos = new List<Aluno> { new Aluno { Id = Guid.NewGuid(), Nome = "Aluno1" }, new Aluno { Id = Guid.NewGuid(), Nome = "Aluno2" } };
+        var expectedAlunos = new List<Aluno> { new Aluno { IdAluno = 1, Nome = "Aluno1" }, new Aluno { IdAluno = 2, Nome = "Aluno2" } };
         mockAlunoService.Setup(service => service.ObterTodosAlunosAsync()).ReturnsAsync(expectedAlunos);
 
-        var alunoController = new AlunoController(mockAlunoService.Object);
+        var mockLogger = new Mock<ILogger<AlunoController>>();
+
+        var alunoController = new AlunoController(mockAlunoService.Object, mockLogger.Object);
 
         var result = await alunoController.Get();
 
@@ -31,11 +34,16 @@ public class AlunoControllerTests
     public async Task Get_ReturnsNotFound_WhenAlunoNotFound()
     {
         var mockAlunoService = new Mock<IAlunoService>();
-        mockAlunoService.Setup(service => service.ObterAlunoPorIdAsync(It.IsAny<Guid>())).ReturnsAsync((Aluno)null);
+        mockAlunoService.Setup(service => service.ObterAlunoPorIdAsync(It.IsAny<int>())).ReturnsAsync((Aluno)null);
 
-        var alunoController = new AlunoController(mockAlunoService.Object);
+        var mockLogger = new Mock<ILogger<AlunoController>>();
 
-        var result = await alunoController.Get(Guid.NewGuid());
+
+        var alunoController = new AlunoController(mockAlunoService.Object, mockLogger.Object);
+
+        var id = 1; // Substitua pelo valor desejado
+
+        var result = await alunoController.Get(id);
 
         Assert.IsType<NotFoundResult>(result.Result);
     }
@@ -44,10 +52,12 @@ public class AlunoControllerTests
     public async Task Post_ReturnsOkObjectResult_WhenAlunoIsAdded()
     {
         var mockAlunoService = new Mock<IAlunoService>();
-        var alunoToAdd = new Aluno { Nome = "Novo Aluno" };
-        mockAlunoService.Setup(service => service.AdicionarAlunoAsync(It.IsAny<Aluno>())).ReturnsAsync(1);
+        var alunoToAdd = new AlunoCursoDTO { Aluno = new Aluno() };
+        mockAlunoService.Setup(service => service.AdicionarAlunoAsync(It.IsAny<AlunoCursoDTO>())).ReturnsAsync(1);
 
-        var alunoController = new AlunoController(mockAlunoService.Object);
+        var mockLogger = new Mock<ILogger<AlunoController>>();
+
+        var alunoController = new AlunoController(mockAlunoService.Object, mockLogger.Object);
 
         var result = await alunoController.Post(alunoToAdd);
 
@@ -59,26 +69,37 @@ public class AlunoControllerTests
     public async Task Put_ReturnsOkResult_WhenAlunoIsUpdated()
     {
         var mockAlunoService = new Mock<IAlunoService>();
-        var alunoToUpdate = new Aluno { Id = Guid.NewGuid(), Nome = "Aluno Atualizado" };
-        mockAlunoService.Setup(service => service.AtualizarAlunoAsync(It.IsAny<Aluno>())).ReturnsAsync(true);
+        var alunoToUpdate = new Aluno { IdAluno = 2, Nome = "Aluno Atualizado" };
+        mockAlunoService.Setup(service => service.AtualizarAlunoAsync(It.IsAny<Aluno>(), It.IsAny<List<int>>()))
+               .ReturnsAsync(true);
+        var mockLogger = new Mock<ILogger<AlunoController>>();
 
-        var alunoController = new AlunoController(mockAlunoService.Object);
+        var alunoController = new AlunoController(mockAlunoService.Object, mockLogger.Object);
 
-        var result = await alunoController.Put(alunoToUpdate.Id, alunoToUpdate);
+        // Fornecer um valor para o parâmetro 'id'
+        var id = 1; // Substitua pelo valor desejado
+
+        var result = await alunoController.Put(id, alunoToUpdate);
 
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
         Assert.True((bool)okResult.Value);
     }
 
+
     [Fact]
     public async Task Delete_ReturnsOkResult_WhenAlunoIsDeleted()
     {
         var mockAlunoService = new Mock<IAlunoService>();
-        mockAlunoService.Setup(service => service.DeletarAlunoAsync(It.IsAny<Guid>())).ReturnsAsync(true);
+        mockAlunoService.Setup(service => service.DeletarAlunoAsync(It.IsAny<int>())).ReturnsAsync(true);
 
-        var alunoController = new AlunoController(mockAlunoService.Object);
+        var mockLogger = new Mock<ILogger<AlunoController>>();
 
-        var result = await alunoController.Delete(Guid.NewGuid());
+        var alunoController = new AlunoController(mockAlunoService.Object, mockLogger.Object);
+
+        // Fornecer um valor para o parâmetro 'id'
+        var id = 1; // Substitua 1 pelo valor desejado
+
+        var result = await alunoController.Delete(id);
 
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
         Assert.True((bool)okResult.Value);

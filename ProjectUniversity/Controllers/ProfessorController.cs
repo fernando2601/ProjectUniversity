@@ -28,7 +28,7 @@ namespace ProjectUniversity.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Professor>> Get(Guid id)
+        public async Task<ActionResult<Professor>> Get(int id)
         {
             var aluno = await _professorService.ObterProfessorPorIdAsync(id);
             if (aluno == null)
@@ -47,7 +47,7 @@ namespace ProjectUniversity.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<bool>> Put(Guid id, [FromBody] Professor professor)
+        public async Task<ActionResult<bool>> Put(int id, [FromBody] Professor professor)
         {
             professor.IdProfessor = id;
             var resultado = await _professorService.AtualizarProfessorAsync(professor);
@@ -55,7 +55,7 @@ namespace ProjectUniversity.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> Delete(Guid id)
+        public async Task<ActionResult<bool>> Delete(int id)
         {
             var resultado = await _professorService.DeletarProfessorAsync(id);
             return Ok(resultado);

@@ -17,22 +17,23 @@ namespace Service.Service
             _alunoRepository = alunoRepository;
         }
 
-        public  Task<int> AdicionarAlunoAsync(Aluno aluno)
+        public  async Task<int> AdicionarAlunoAsync(AlunoCursoDTO alunoCurso)
         {
-            return _alunoRepository.AdicionarAsync(aluno);
+            return await _alunoRepository.AdicionarAlunoAsync(alunoCurso);
         }
 
-        public Task<bool> AtualizarAlunoAsync(Aluno aluno)
+        public Task<bool> AtualizarAlunoAsync(Aluno aluno, List<int> cursosAdicionados)
         {
-            return _alunoRepository.AtualizarAlunoAsync(aluno);
+            return _alunoRepository.AtualizarAlunoAsync(aluno, cursosAdicionados);
         }
 
-        public Task<bool> DeletarAlunoAsync(Guid id)
+
+        public Task<bool> DeletarAlunoAsync(int id)
         {
             return _alunoRepository.DeletarAlunoAsync(id);
         }
 
-        public Task<Aluno> ObterAlunoPorIdAsync(Guid id)
+        public Task<Aluno> ObterAlunoPorIdAsync(int id)
         {
             return _alunoRepository.ObterPorIdAsync(id);
         }

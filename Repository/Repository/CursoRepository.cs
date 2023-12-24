@@ -20,29 +20,112 @@ namespace Repository
 
         public async Task<int> AdicionarAsync(Curso curso)
         {
-            _dbConnection.Open();
-            return await _dbConnection.ExecuteAsync("INSERT INTO Curso (Semestres, Nome, Disciplina,Professores,Mensalidade) VALUES (@Semestres, @Nome, @Disciplina,@Professores,@Mensalidade); SELECT CAST(SCOPE_IDENTITY() as int)", curso);
+            try
+            {
+                _dbConnection.Open(); 
+
+                using (var transaction = _dbConnection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Adicionar curso e obter o ID gerado automaticamente
+                        var cursoId = await _dbConnection.ExecuteScalarAsync<int>(
+                            @"INSERT INTO Curso (Semestres, Nome, Mensalidade)
+                      VALUES (@Semestres, @Nome, @Mensalidade);
+                      SELECT CAST(SCOPE_IDENTITY() as int)",
+                            new
+                            {
+                                Semestres = curso.Semestres,
+                                Nome = curso.Nome,
+                                Mensalidade = curso.Mensalidade
+                            }, transaction);
+
+                        // Atualiza o objeto Curso com o ID gerado
+                        curso.IdCurso = cursoId;
+
+                        // Commit da transação se a operação for bem-sucedida
+                        transaction.Commit();
+
+                        return cursoId;
+                    }
+                    catch
+                    {
+                        // Rollback em caso de erro
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Rethrow a exceção para que ela seja tratada no nível superior, se necessário
+                throw;
+            }
+            finally
+            {
+                _dbConnection.Close();
+            }
         }
-        
+
+
         public async Task<bool> AtualizarCursoAsync(Curso curso)
         {
+            if (_dbConnection.State != ConnectionState.Open)
+            {
+                _dbConnection.Open();
+            }
+
+            using (var transaction = _dbConnection.BeginTransaction())
+            {
+                try
+                {
+                    // Atualiza os dados do curso na tabela Curso
+                    var cursoUpdateQuery = "UPDATE Curso SET Semestres = @Semestres, Nome = @Nome, " +
+                                           "Mensalidade = @Mensalidade WHERE IdCurso = @IdCurso";
+                    var resultCurso = await _dbConnection.ExecuteAsync(cursoUpdateQuery, curso, transaction);
+
+                    // Commit da transação se a operação for bem-sucedida
+                    transaction.Commit();
+
+                    // Retorna verdadeiro se alguma linha foi afetada na tabela Curso
+                    return resultCurso > 0;
+                }
+                catch
+                {
+                    // Rollback em caso de erro
+                    transaction.Rollback();
+                    throw;
+                }
+                finally
+                {
+                    _dbConnection.Close();
+                }
+            }
+        }
+
+        public async Task<bool> DeletarCursoAsync(int id)
+        {
             _dbConnection.Open();
-            var result = await _dbConnection.ExecuteAsync("UPDATE Curso SET Semestres = @Semestres, Nome = @Nome, Mensalidade = @Mensalidade ,Disciplina = @Disciplina, Professores = @Professores WHERE IdCurso = @IdCurso", curso);
+            var result = await _dbConnection.ExecuteAsync("DELETE FROM Curso WHERE IdCurso = @IdCurso", new { IdCurso = id });
             return result > 0;
         }
 
-        public async Task<bool> DeletarCursoAsync(Guid id)
+        public async Task<Curso> ObterPorIdAsync(int idCurso)
         {
             _dbConnection.Open();
-            var result = await _dbConnection.ExecuteAsync("DELETE FROM Curso WHERE IdCurso = @IdCurso", new { Id = id });
-            return result > 0;
-        }
 
-        public async Task<Curso> ObterPorIdAsync(Guid id)
-        {
-            _dbConnection.Open();
-            return await _dbConnection.QueryFirstOrDefaultAsync<Curso>("SELECT * FROM Curso WHERE IdCurso = @IdCurso", new { Id = id });
+            try
+            {
+                return await _dbConnection.QueryFirstOrDefaultAsync<Curso>(
+                    "SELECT * FROM Curso WHERE IdCurso = @IdCurso",
+                    new { IdCurso = idCurso });
+            }
+            finally
+            {
+                _dbConnection.Close();
+            }
         }
+   
 
         public async Task<IEnumerable<Curso>> ObterTodosAsync()
         {

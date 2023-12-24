@@ -29,12 +29,12 @@ namespace Service.Service
             return _cursoRepository.AtualizarCursoAsync(curso);
         }
 
-        public Task<bool> DeletarCursoAsync(Guid id)
+        public Task<bool> DeletarCursoAsync(int id)
         {
             return _cursoRepository.DeletarCursoAsync(id);
         }
 
-        public Task<Curso> ObterCursoPorIdAsync(Guid id)
+        public Task<Curso> ObterCursoPorIdAsync(int id)
         {
             return _cursoRepository.ObterPorIdAsync(id);
         }
