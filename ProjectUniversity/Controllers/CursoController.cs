@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using Service.Interface;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -32,13 +31,13 @@ namespace ProjectUniversity.Controllers
             {
                 var cursos = await _cursoService.ObterTodosCursosAsync();
 
-                _logger.LogInformation("Lista de alunos obtida com sucesso");
+                _logger.LogInformation("Lista de cursos obtida com sucesso");
 
                 return Ok(cursos);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Erro ao obter a lista de alunos: {ex.Message}");
+                _logger.LogError($"Erro ao obter a lista de cursos: {ex.Message}");
                 return StatusCode(500, "Ocorreu um erro ao obter a lista de alunos");
             }
         }
@@ -51,18 +50,18 @@ namespace ProjectUniversity.Controllers
 
                 if (curso == null)
                 {
-                    _logger.LogWarning($"Aluno com ID {idCurso} não encontrado");
+                    _logger.LogWarning($"Curso com ID {idCurso} não encontrado");
                     return NotFound();
                 }
 
-                _logger.LogInformation($"Aluno com ID {idCurso} encontrado com sucesso");
+                _logger.LogInformation($"Curso com ID {idCurso} encontrado com sucesso");
 
                 return Ok(curso);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Erro ao obter o aluno com ID {idCurso}: {ex.Message}");
-                return StatusCode(500, "Ocorreu um erro ao obter o aluno por ID");
+                _logger.LogError($"Erro ao obter o curso com ID {idCurso}: {ex.Message}");
+                return StatusCode(500, "Ocorreu um erro ao obter o curso por ID");
             }
                 }
 
@@ -91,8 +90,6 @@ namespace ProjectUniversity.Controllers
                 return StatusCode(500, "Ocorreu um erro ao adicionar o novo curso");
             }
         }
-
-
 
         [HttpPut("{id}")]
         public async Task<ActionResult<bool>> Put(int id, [FromBody] Curso curso)
@@ -128,8 +125,6 @@ namespace ProjectUniversity.Controllers
                 return StatusCode(500, "Ocorreu um erro durante a atualização do curso");
             }
         }
-
-
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)

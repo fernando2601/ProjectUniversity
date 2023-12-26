@@ -28,7 +28,6 @@ namespace Repository
                 {
                     try
                     {
-                        // Adicionar curso e obter o ID gerado automaticamente
                         var cursoId = await _dbConnection.ExecuteScalarAsync<int>(
                             @"INSERT INTO Curso (Semestres, Nome, Mensalidade)
                       VALUES (@Semestres, @Nome, @Mensalidade);
@@ -43,7 +42,6 @@ namespace Repository
                         // Atualiza o objeto Curso com o ID gerado
                         curso.IdCurso = cursoId;
 
-                        // Commit da transação se a operação for bem-sucedida
                         transaction.Commit();
 
                         return cursoId;
@@ -58,7 +56,6 @@ namespace Repository
             }
             catch (Exception ex)
             {
-                // Rethrow a exceção para que ela seja tratada no nível superior, se necessário
                 throw;
             }
             finally
@@ -79,20 +76,17 @@ namespace Repository
             {
                 try
                 {
-                    // Atualiza os dados do curso na tabela Curso
                     var cursoUpdateQuery = "UPDATE Curso SET Semestres = @Semestres, Nome = @Nome, " +
                                            "Mensalidade = @Mensalidade WHERE IdCurso = @IdCurso";
                     var resultCurso = await _dbConnection.ExecuteAsync(cursoUpdateQuery, curso, transaction);
 
-                    // Commit da transação se a operação for bem-sucedida
                     transaction.Commit();
 
-                    // Retorna verdadeiro se alguma linha foi afetada na tabela Curso
                     return resultCurso > 0;
                 }
                 catch
                 {
-                    // Rollback em caso de erro
+
                     transaction.Rollback();
                     throw;
                 }

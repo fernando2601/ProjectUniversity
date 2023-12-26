@@ -11,8 +11,8 @@ namespace Service.Interface
     {
         Task<IEnumerable<Disciplina>> ObterTodasDisciplinasAsync();
         Task<Disciplina> ObterDisciplinaPorIdAsync(int id);
-        Task<int> AdicionarDisciplinaoAsync(Disciplina disciplina);
+        Task<int> AdicionarDisciplinaoAsync(DisciplinaDto disciplina);
         Task<bool> AtualizarDisciplinaAsync(Disciplina disciplina);
-        Task<bool> DeletarDisciplinaAsync(int id);
+        Task<bool> DeletarDisciplinaAsync(int IdDisciplina);
     }
 }

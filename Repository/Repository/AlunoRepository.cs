@@ -4,7 +4,6 @@ using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace Repository
@@ -78,8 +77,6 @@ namespace Repository
                 _dbConnection.Close();  // Fecha a conexão no final
             }
         }
-
-
 
         public async Task<bool> AtualizarAlunoAsync(Aluno aluno, List<int> cursosAdicionados)
         {

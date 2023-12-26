@@ -1,15 +1,10 @@
-using Domain;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using IOC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Text;
-using IOC;
+using Microsoft.OpenApi.Models;
 
 namespace ProjectUniversity
 {
@@ -26,23 +21,13 @@ namespace ProjectUniversity
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-            services.AddLogging(builder =>
-            {
-                builder.AddConsole();
-            });
+            services.AddLogging();
+
+            services.AdicionarSwagger();
 
             services.AdicionarServicos(connectionString);
-            services.AdicionarSwagger();
-            services.ConfigurarAutenticacaoJwt();
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-            });
+            // Add CORS, Swagger, Authentication, etc. if needed
 
             services.AddControllers();
         }
@@ -52,8 +37,13 @@ namespace ProjectUniversity
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                // Add Swagger middleware
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProjectUniversity v1"));
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProjectUniversity API v1");
+                });
             }
 
             app.UseCors("CorsPolicy");
@@ -64,8 +54,6 @@ namespace ProjectUniversity
 
             app.UseAuthorization();
 
-            app.UseAuthentication();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -73,4 +61,3 @@ namespace ProjectUniversity
         }
     }
 }
-

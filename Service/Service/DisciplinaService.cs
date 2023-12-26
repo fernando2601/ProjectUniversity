@@ -20,7 +20,7 @@ namespace Service.Service
             _disciplinaRepository = disciplinaRepository;
         }
 
-        public Task<int> AdicionarDisciplinaoAsync(Disciplina disciplina)
+        public Task<int> AdicionarDisciplinaoAsync(DisciplinaDto disciplina)
         {
             return _disciplinaRepository.AdicionarAsync(disciplina);
         }
@@ -30,9 +30,9 @@ namespace Service.Service
             return _disciplinaRepository.AtualizarDisciplinaAsync(disciplina);
         }
 
-        public Task<bool> DeletarDisciplinaAsync(int id)
+        public Task<bool> DeletarDisciplinaAsync(int IdDisciplina)
         {
-            return _disciplinaRepository.DeletarDisciplinaAsync(id);
+            return _disciplinaRepository.DeletarDisciplinaAsync(IdDisciplina);
         }
 
         public Task<Disciplina> ObterDisciplinaPorIdAsync(int id)

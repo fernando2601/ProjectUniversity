@@ -11,8 +11,8 @@ namespace Repository.Interface
     {
         Task<IEnumerable<Disciplina>> ObterTodosAsync();
         Task<Disciplina> ObterPorIdAsync(int id);
-        Task<int> AdicionarAsync(Disciplina disciplina);
+        Task<int> AdicionarAsync(DisciplinaDto disciplina);
         Task<bool> AtualizarDisciplinaAsync(Disciplina disciplina);
-        Task<bool> DeletarDisciplinaAsync(int id);
+        Task<bool> DeletarDisciplinaAsync(int IdDisciplina);
     }
 }

@@ -12,3 +12,4 @@ C:\Users\nerif\source\repos\ProjectUniversity\Repository\obj\Debug\net5.0\Reposi
 C:\Users\nerif\source\repos\ProjectUniversity\Repository\obj\Debug\net5.0\Repository.dll
 C:\Users\nerif\source\repos\ProjectUniversity\Repository\obj\Debug\net5.0\ref\Repository.dll
 C:\Users\nerif\source\repos\ProjectUniversity\Repository\obj\Debug\net5.0\Repository.pdb
+C:\Users\nerif\source\repos\ProjectUniversity\Repository\obj\Debug\net5.0\Repository.csproj.CopyComplete
