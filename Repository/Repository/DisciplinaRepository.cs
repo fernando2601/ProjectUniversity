@@ -124,8 +124,6 @@ namespace Repository
             }
         }
 
-
-
         public async Task<bool> AtualizarDisciplinaAsync(Disciplina disciplina)
         {
             try

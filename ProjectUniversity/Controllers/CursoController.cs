@@ -63,7 +63,7 @@ namespace ProjectUniversity.Controllers
                 _logger.LogError($"Erro ao obter o curso com ID {idCurso}: {ex.Message}");
                 return StatusCode(500, "Ocorreu um erro ao obter o curso por ID");
             }
-                }
+        }
 
         [HttpPost]
         public async Task<ActionResult<int>> Post([FromBody] Curso curso)

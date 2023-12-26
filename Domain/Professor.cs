@@ -16,11 +16,11 @@ namespace Domain
 
         public string Nome { get; set; }
 
-        public string Endereço { get; set; }
+        public string Endereco { get; set; }
 
         public int Idade { get; set; }
 
-        public string Salário { get; set; }
+        public string Salario { get; set; }
 
         public bool ProfessorCoordenador { get; set; }
 

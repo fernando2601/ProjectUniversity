@@ -17,13 +17,23 @@ namespace Domain
     public class CursoDto
     {
         public string Nome { get; set; }
-        // Outras propriedades necessárias
     }
 
     public class ProfessorDto
     {
         public string Nome { get; set; }
-        // Outras propriedades necessárias
+    }
+
+    public class DisciplinaProfessorDto
+    {
+        public int IdCurso { get; set; }
+
+        public int IdDisciplina { get; set; }
+
+        public Curso Curso { get; set; }
+
+        public Disciplina Disciplina { get; set; }
+
     }
 
 }
