@@ -33,6 +33,8 @@ namespace ProjectUniversity
 
             services.AdicionarServicos(connectionString);
 
+
+
             services.ConfigurarAutenticacaoJwt();
 
             services.AddCors(options =>
@@ -55,11 +57,9 @@ namespace ProjectUniversity
             services.AddHealthChecksUI()
                 .AddInMemoryStorage();
 
-            //services.AddHealthChecksUI(options =>
-            //{
-            //    options.AddHealthCheckEndpoint("Endpoint1", "/healthz");
+            AuthorizationPolicyConfiguration.ConfigurePolicies(services);
 
-            //});
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -68,11 +68,11 @@ namespace ProjectUniversity
             {
                 app.UseDeveloperExceptionPage();
 
-                // Add Swagger middleware
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProjectUniversity API v1");
+
                 });
             }
 
@@ -81,6 +81,8 @@ namespace ProjectUniversity
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthentication();
+
 
             app.UseAuthorization();
 
@@ -113,6 +115,8 @@ namespace ProjectUniversity
                 Predicate = _ => true,
                 ResponseWriter = HealthChecks.UI.Client.UIResponseWriter.WriteHealthCheckUIResponse,
             });
+
+
 
             app.UseEndpoints(endpoints =>
             {

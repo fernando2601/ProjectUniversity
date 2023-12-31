@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Service;
@@ -9,8 +10,10 @@ using System.Threading.Tasks;
 
 namespace ProjectUniversity.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/aluno")]
+    [Authorize(Roles = "Aluno")]
+    [Consumes("application/json")]
     public class AlunoController : ControllerBase
     {
         private readonly IAlunoService _alunoService;

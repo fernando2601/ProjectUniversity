@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Service.Interface;
@@ -10,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace ProjectUniversity.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/professor")]
+    [Authorize(Roles = "Professor")]
     public class ProfessorController : ControllerBase
     {
         private readonly IProfessorService _professorService;
         private readonly ILogger<ProfessorController> _logger;
-
 
         public ProfessorController(IProfessorService professorService, ILogger<ProfessorController> logger)
         {
@@ -24,7 +25,6 @@ namespace ProjectUniversity.Controllers
             _logger = logger;
 
         }
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Professor>>> Get()
         {

@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Domain;
+using Microsoft.Extensions.DependencyInjection;
 using Repository;
 using Repository.Interface;
+using Repository.Repository;
 using Service;
 using Service.Interface;
 using Service.Service;
@@ -25,8 +27,12 @@ namespace IOC
             services.AddTransient<IProfessorRepository, ProfessorRepository>();
             services.AddTransient<IProfessorService, ProfessorService>();
 
-            services.AddTransient<IDbConnection>(db => new SqlConnection(connectionString));
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IUsuarioService, UsuarioService>();
 
+
+
+            services.AddTransient<IDbConnection>(db => new SqlConnection(connectionString));
 
         }
     }
