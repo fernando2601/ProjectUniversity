@@ -13,7 +13,6 @@ namespace ProjectUniversity.Controllers
 {
     [ApiController]
     [Route("api/professor")]
-    [Authorize(Roles = "Professor")]
     public class ProfessorController : ControllerBase
     {
         private readonly IProfessorService _professorService;
@@ -26,6 +25,7 @@ namespace ProjectUniversity.Controllers
 
         }
         [HttpGet]
+        [Authorize(Roles = "Professor,professor")]
         public async Task<ActionResult<IEnumerable<Professor>>> Get()
         {
             try
@@ -44,6 +44,8 @@ namespace ProjectUniversity.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "professor")]
+
         public async Task<ActionResult<Professor>> Get(int id)
         {
             try

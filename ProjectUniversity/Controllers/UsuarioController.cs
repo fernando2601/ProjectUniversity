@@ -7,8 +7,8 @@ using Service.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
-
 
 namespace ProjectUniversity.Controllers
 {
@@ -17,13 +17,14 @@ namespace ProjectUniversity.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly JwtSettings _jwtSettings;
 
-        public UsuarioController(IUsuarioService usuarioService)
+        public UsuarioController(IUsuarioService usuarioService, JwtSettings jwtSettings)
         {
-
             _usuarioService = usuarioService;
-
+            _jwtSettings = jwtSettings;
         }
+
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
@@ -37,8 +38,11 @@ namespace ProjectUniversity.Controllers
                 if (user == null)
                     return NotFound(new { message = "Usuário ou senha inválidos" });
 
-                var token = TokenService.GenerateToken(user);
+                var token = TokenService.GenerateToken(user, _jwtSettings);
                 user.Password = "";
+
+                Console.WriteLine($"Reivindicações do usuário: {string.Join(", ", (User.Identity as ClaimsIdentity)?.Claims?.Select(c => $"{c.Type}={c.Value}"))}");
+
 
                 return new
                 {
@@ -53,7 +57,6 @@ namespace ProjectUniversity.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("anonymous")]
         [AllowAnonymous]
@@ -65,14 +68,23 @@ namespace ProjectUniversity.Controllers
         public string Authenticated() => String.Format("Autenticado - {0}", User.Identity.Name);
 
         [HttpGet]
-        [Route("funcionário")]
-        [Authorize(Roles = "professor")]
-        public string Professor() => "Professor";
+        [Route("aluno-authenticated")]
+        //[Authorize(Policy = "Aluno")]
+        public string AlunoAuthenticated()
+        {
+            // Verificar se o usuário autenticado é um aluno
+            if (IsAuthenticatedAluno(User))
+            {
+                return "Autenticado como Aluno";
+            }
 
-        [HttpGet]
-        [Route("aluno")]
-        [Authorize(Roles = "aluno")]
-        public string Aluno() => "Aluno";
+            return "Usuário não é um Aluno autenticado";
+        }
 
+        // Método para verificar se o usuário autenticado é um Aluno
+        private bool IsAuthenticatedAluno(ClaimsPrincipal user)
+        {
+            return user.IsInRole("aluno");
+        }
     }
 }

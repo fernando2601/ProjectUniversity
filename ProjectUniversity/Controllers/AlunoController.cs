@@ -12,8 +12,7 @@ namespace ProjectUniversity.Controllers
 {
     [ApiController]
     [Route("api/aluno")]
-    [Authorize(Roles = "Aluno")]
-    [Consumes("application/json")]
+
     public class AlunoController : ControllerBase
     {
         private readonly IAlunoService _alunoService;
@@ -26,6 +25,7 @@ namespace ProjectUniversity.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "AlunoProfessor")]
         public async Task<ActionResult<IEnumerable<Aluno>>> Get()
         {
             try
@@ -44,6 +44,7 @@ namespace ProjectUniversity.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "aluno")]
         public async Task<ActionResult<Aluno>> Get(int idAluno)
         {
             try

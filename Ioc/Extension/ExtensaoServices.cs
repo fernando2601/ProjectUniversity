@@ -30,6 +30,9 @@ namespace IOC
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IUsuarioService, UsuarioService>();
 
+            services.AddTransient<IDiretorRepository, DiretorRepository>();
+            services.AddTransient<IDiretorService, DiretorService>();
+
 
 
             services.AddTransient<IDbConnection>(db => new SqlConnection(connectionString));

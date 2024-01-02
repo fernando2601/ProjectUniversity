@@ -13,6 +13,9 @@ namespace Ioc.Extension
         {
             services.AddAuthorization(options =>
             {
+                    options.AddPolicy("AlunoProfessor", policy => policy.RequireRole("aluno","professor"));
+                    options.AddPolicy("DiretorProfessor", policy => policy.RequireRole("director", "professor"));
+                    options.AddPolicy("DiretorAluno", policy => policy.RequireRole("director", "aluno"));
                     options.AddPolicy("Aluno", policy => policy.RequireRole("aluno"));
                     options.AddPolicy("Professor", policy => policy.RequireRole("professor"));
                     options.AddPolicy("Diretor", policy => policy.RequireRole("director"));

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 
 namespace Domain
 {
-    public static class Settings
+    public class JwtSettings
     {
-        public static string Secret = "fedaf7d8863b48e197b9287d492b708e";
+        public string Secret { get; set; }
+
     }
 }

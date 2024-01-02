@@ -1,5 +1,7 @@
+using Domain;
 using Ioc.Extension;
 using IOC;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -7,10 +9,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 
 namespace ProjectUniversity
 {
@@ -33,9 +39,28 @@ namespace ProjectUniversity
 
             services.AdicionarServicos(connectionString);
 
+            services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
 
+            var jwtSettings = Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+            services.AddSingleton(jwtSettings);
 
-            services.ConfigurarAutenticacaoJwt();
+            var key = Encoding.ASCII.GetBytes(jwtSettings.Secret);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.FromHours(5)
+        };
+
+    });
+            //services.ConfigurarAutenticacaoJwt();
 
             services.AddCors(options =>
             {
@@ -59,7 +84,6 @@ namespace ProjectUniversity
 
             AuthorizationPolicyConfiguration.ConfigurePolicies(services);
 
-            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -76,17 +100,13 @@ namespace ProjectUniversity
                 });
             }
 
-            app.UseCors("CorsPolicy");
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
+            app.UseCors("CorsPolicy");
             app.UseAuthentication();
-
-
             app.UseAuthorization();
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
-            // Use Health Checks middleware
             app.UseHealthChecks("/status", new HealthCheckOptions
             {
                 ResponseWriter = (httpContext, result) =>
@@ -116,12 +136,6 @@ namespace ProjectUniversity
                 ResponseWriter = HealthChecks.UI.Client.UIResponseWriter.WriteHealthCheckUIResponse,
             });
 
-
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
         }
     }
 }

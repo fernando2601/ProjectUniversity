@@ -8,6 +8,8 @@ namespace Domain.Domain
 {
     public class Diretor
     {
+        public int IdDiretor { get; set; }
+
         public string Nome { get; set; }
 
         public int Idade { get; set; }
@@ -15,7 +17,6 @@ namespace Domain.Domain
         public double Salario { get; set; }
 
         public string Endereco { get; set; }
-
 
     }
 }
