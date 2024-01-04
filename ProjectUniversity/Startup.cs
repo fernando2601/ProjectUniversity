@@ -9,10 +9,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using RabbitMq.AlunoFila;
+using RabbitMQ.Client;
 using System;
 using System.Linq;
 using System.Security.Claims;
@@ -71,7 +74,24 @@ namespace ProjectUniversity
                         .AllowAnyHeader());
             });
 
+            services.Configure<RabbitMQConfig>(Configuration.GetSection("RabbitMQ"));
 
+            // Adiciona a conexão com o RabbitMQ como serviço
+
+            services.AddSingleton<IConnection>(provider =>
+            {
+                var config = provider.GetRequiredService<IOptions<RabbitMQConfig>>().Value;
+
+                var factory = new ConnectionFactory
+                {
+                    HostName = config.HostName,
+                    Port = config.Port,
+                    UserName = config.UserName,
+                    Password = config.Password
+                };
+
+                return factory.CreateConnection();
+            });
             services.AddControllers();
 
             services.AddHealthChecks()

@@ -29,8 +29,8 @@ namespace Repository
 
                 return await _dbConnection.ExecuteAsync(
                     @"INSERT INTO Professor (Nome, Endereco, Idade, Salario, ProfessorCoordenador)
-              VALUES (@Nome, @Endereco, @Idade, @Salario, @ProfessorCoordenador);
-              SELECT CAST(SCOPE_IDENTITY() as int)",
+                    VALUES (@Nome, @Endereco, @Idade, @Salario, @ProfessorCoordenador);
+                    SELECT CAST(SCOPE_IDENTITY() as int)",
                     professor
                 );
             }
@@ -90,11 +90,11 @@ namespace Repository
             try
             {
                 string query = @"
-            SELECT D.IdDisciplina, D.Nota, D.Nome AS DisciplinaNome, 
+                SELECT D.IdDisciplina, D.Nota, D.Nome AS DisciplinaNome, 
                    C.IdCurso, C.Semestres, C.Nome AS CursoNome
-            FROM Disciplina D
-            INNER JOIN Curso C ON D.IdCurso = C.IdCurso
-            WHERE D.IdProfessor = @IdProfessor";
+                FROM Disciplina D
+                INNER JOIN Curso C ON D.IdCurso = C.IdCurso
+                WHERE D.IdProfessor = @IdProfessor";
 
                 var disciplinas = await _dbConnection.QueryAsync<DisciplinaProfessorDto>(query, new { IdProfessor = idProfessor });
 
@@ -106,21 +106,17 @@ namespace Repository
             }
         }
 
-
         public async Task<bool> DeletarProfessorAsync(int idProfessor)
         {
             try
             {
-                // Obter as disciplinas associadas ao professor
                 var disciplinas = await ObterDisciplinasPorProfessorAsync(idProfessor);
 
-                // Excluir as disciplinas
                 foreach (var disciplina in disciplinas)
                 {
                     await _dbConnection.ExecuteAsync("DELETE FROM Disciplina WHERE IdDisciplina = @IdDisciplina", new { IdDisciplina = disciplina.IdDisciplina });
                 }
 
-                // Excluir o professor
                 var resultProfessor = await _dbConnection.ExecuteAsync("DELETE FROM Professor WHERE IdProfessor = @IdProfessor", new { IdProfessor = idProfessor });
 
                 return resultProfessor > 0;
@@ -130,7 +126,6 @@ namespace Repository
                 throw;
             }
         }
-
 
         public async Task<Professor> ObterPorIdAsync(int id)
         {

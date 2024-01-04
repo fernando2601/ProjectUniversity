@@ -11,6 +11,7 @@ C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.G
 C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.AssemblyInfoInputs.cache
 C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.AssemblyInfo.cs
 C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.csproj.CoreCompileInputs.cache
+C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.csproj.CopyComplete
 C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.dll
 C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\ref\Service.dll
 C:\Users\nerif\source\repos\ProjectUniversity\Service\obj\Debug\net5.0\Service.pdb

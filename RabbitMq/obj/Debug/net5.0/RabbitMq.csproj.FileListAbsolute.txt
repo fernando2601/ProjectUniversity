@@ -1,0 +1,14 @@
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\obj\Debug\net5.0\RabbitMq.csproj.AssemblyReference.cache
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\obj\Debug\net5.0\RabbitMq.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\obj\Debug\net5.0\RabbitMq.AssemblyInfoInputs.cache
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\obj\Debug\net5.0\RabbitMq.AssemblyInfo.cs
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\obj\Debug\net5.0\RabbitMq.csproj.CoreCompileInputs.cache
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\bin\Debug\net5.0\RabbitMq.deps.json
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\bin\Debug\net5.0\RabbitMq.dll
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\bin\Debug\net5.0\ref\RabbitMq.dll
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\bin\Debug\net5.0\RabbitMq.pdb
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\bin\Debug\net5.0\Domain.dll
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\bin\Debug\net5.0\Domain.pdb
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\obj\Debug\net5.0\RabbitMq.dll
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\obj\Debug\net5.0\ref\RabbitMq.dll
+C:\Users\nerif\source\repos\ProjectUniversity\RabbitMq\obj\Debug\net5.0\RabbitMq.pdb

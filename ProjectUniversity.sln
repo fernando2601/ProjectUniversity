@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ioc", "Ioc\Ioc.csproj", "{5AE96636-44F1-4057-9658-9EA7A3DB0C67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMq", "RabbitMq\RabbitMq.csproj", "{DF7927A3-054B-4B10-8909-8FA45850F162}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{5AE96636-44F1-4057-9658-9EA7A3DB0C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AE96636-44F1-4057-9658-9EA7A3DB0C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AE96636-44F1-4057-9658-9EA7A3DB0C67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF7927A3-054B-4B10-8909-8FA45850F162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF7927A3-054B-4B10-8909-8FA45850F162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF7927A3-054B-4B10-8909-8FA45850F162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF7927A3-054B-4B10-8909-8FA45850F162}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

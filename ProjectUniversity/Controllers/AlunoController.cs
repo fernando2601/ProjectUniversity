@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RabbitMq.Interface;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,19 @@ namespace ProjectUniversity.Controllers
     {
         private readonly IAlunoService _alunoService;
         private readonly ILogger<AlunoController> _logger;
+        private readonly IRabbitMQService _rabbitMQService;
 
-        public AlunoController(IAlunoService alunoService, ILogger<AlunoController> logger)
+        private readonly IAlunoProducer _alunoProducer;
+
+
+        public AlunoController(IAlunoService alunoService, ILogger<AlunoController> logger, IAlunoProducer alunoProducer, IRabbitMQService rabbitMQService)
         {
             _alunoService = alunoService;
             _logger = logger;
+            _alunoProducer = alunoProducer;
+            _rabbitMQService = rabbitMQService;
+
+
         }
 
         [HttpGet]
@@ -43,7 +52,7 @@ namespace ProjectUniversity.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{idAluno}")]
         [Authorize(Roles = "aluno")]
         public async Task<ActionResult<Aluno>> Get(int idAluno)
         {
@@ -82,6 +91,10 @@ namespace ProjectUniversity.Controllers
                 var cursoId = await _alunoService.AdicionarAlunoAsync(alunoCurso);
 
                 _logger.LogInformation($"Aluno adicionado com sucesso. ID do curso: {cursoId}");
+
+                _alunoProducer.EnviarMensagemAluno(alunoCurso.Aluno);
+                string mensagem = "";
+                _rabbitMQService.EnviarMensagem(mensagem);
 
                 return Ok(cursoId);
             }

@@ -13,6 +13,9 @@ C:\Users\nerif\source\repos\ProjectUniversity\Ioc\obj\Debug\net5.0\Ioc.Generated
 C:\Users\nerif\source\repos\ProjectUniversity\Ioc\obj\Debug\net5.0\Ioc.AssemblyInfoInputs.cache
 C:\Users\nerif\source\repos\ProjectUniversity\Ioc\obj\Debug\net5.0\Ioc.AssemblyInfo.cs
 C:\Users\nerif\source\repos\ProjectUniversity\Ioc\obj\Debug\net5.0\Ioc.csproj.CoreCompileInputs.cache
+C:\Users\nerif\source\repos\ProjectUniversity\Ioc\obj\Debug\net5.0\Ioc.csproj.CopyComplete
 C:\Users\nerif\source\repos\ProjectUniversity\Ioc\obj\Debug\net5.0\Ioc.dll
 C:\Users\nerif\source\repos\ProjectUniversity\Ioc\obj\Debug\net5.0\ref\Ioc.dll
 C:\Users\nerif\source\repos\ProjectUniversity\Ioc\obj\Debug\net5.0\Ioc.pdb
+C:\Users\nerif\source\repos\ProjectUniversity\Ioc\bin\Debug\net5.0\RabbitMq.dll
+C:\Users\nerif\source\repos\ProjectUniversity\Ioc\bin\Debug\net5.0\RabbitMq.pdb

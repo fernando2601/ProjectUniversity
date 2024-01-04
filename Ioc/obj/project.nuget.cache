@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/OmkmOBExDvSTea6sUQdSqrDu4t3k+xBU66ilC0hginhkG8qNGRKBJ1TM4fIL4/Q8S/3WECAa0tHu/8xgw51QA==",
+  "dgSpecHash": "1ReqJQ47PhNWC7OWlayhYrswRBpDiJdLXkFsrYKqkC+7UYlp4YBB+eM99/qf8Vd0xgRO8jZRFBG14fNytDN/7g==",
   "success": true,
   "projectFilePath": "C:\\Users\\nerif\\source\\repos\\ProjectUniversity\\Ioc\\Ioc.csproj",
   "expectedPackageFiles": [
@@ -75,6 +75,7 @@
     "C:\\Users\\nerif\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\nerif\\.nuget\\packages\\nodatime\\3.1.10\\nodatime.3.1.10.nupkg.sha512",
     "C:\\Users\\nerif\\.nuget\\packages\\portable.bouncycastle\\1.8.1.3\\portable.bouncycastle.1.8.1.3.nupkg.sha512",
+    "C:\\Users\\nerif\\.nuget\\packages\\rabbitmq.client\\6.8.1\\rabbitmq.client.6.8.1.nupkg.sha512",
     "C:\\Users\\nerif\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\nerif\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\nerif\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
@@ -126,6 +127,7 @@
     "C:\\Users\\nerif\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
     "C:\\Users\\nerif\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
     "C:\\Users\\nerif\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
+    "C:\\Users\\nerif\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
     "C:\\Users\\nerif\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\nerif\\.nuget\\packages\\yamldotnet\\8.1.2\\yamldotnet.8.1.2.nupkg.sha512"
   ],
