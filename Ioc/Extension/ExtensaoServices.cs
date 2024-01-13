@@ -39,10 +39,7 @@ namespace IOC
             services.AddTransient<IAlunoConsumer, AlunoConsumer>();
             services.AddTransient<IAlunoProducer, AlunoProducer>();
 
-
             services.AddTransient<IRabbitMQService>(sp => new RabbitMQService(sp.GetRequiredService<IConnection>(), "FilaAluno"));
-
-
 
             services.AddTransient<IDbConnection>(db => new SqlConnection(connectionString));
 

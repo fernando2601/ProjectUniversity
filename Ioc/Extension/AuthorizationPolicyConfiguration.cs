@@ -19,6 +19,8 @@ namespace Ioc.Extension
                     options.AddPolicy("Aluno", policy => policy.RequireRole("aluno"));
                     options.AddPolicy("Professor", policy => policy.RequireRole("professor"));
                     options.AddPolicy("Diretor", policy => policy.RequireRole("director"));
+                    options.AddPolicy("Disciplina", policy => policy.RequireRole("disciplina"));
+                
                 });
         }
     }

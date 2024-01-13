@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Service.Interface;
@@ -24,7 +25,8 @@ namespace ProjectUniversity.Controllers
             _logger = logger;
 
         }
-
+        [HttpGet]
+        [Authorize(Policy = "Disciplina")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Disciplina>>> ObterTodos()
         {
